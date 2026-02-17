@@ -1,50 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Nik Awtrey</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+---
+layout: default
+---
 
-<body>
+<nav>
+  <a href="#about">About</a>
+  <a href="#work">Selected Work</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <header>
-    <h1>Nik Awtrey</h1>
-    <p>Technical automation and scientific software projects</p>
-  </header>
+<header>
+  <h1>Nik Awtrey</h1>
+  <p class="subtitle">
+    I build technical tools that help scientific and engineering teams automate workflows,
+    analyze complex data, and generate actionable insights.
+  </p>
+  <p class="focus">
+    Focus areas: scientific computing, workflow automation, performance-oriented analysis, and technical reporting tools.
+  </p>
+</header>
 
-  <section>
+<main>
+  <section id="about">
     <h2>About</h2>
     <p>
-      I build technical tools that help scientific and engineering teams
-      automate workflows, analyze complex data, and generate actionable
-      insights.
+      I'm a physics-trained developer focused on scientific computing and practical automation.
+      My work emphasizes reliable tools—often around data pipelines, reporting, and performance analysis—
+      that reduce manual effort and make complex results easier to interpret.
     </p>
   </section>
 
-  <section>
-    <h2>Selected Projects</h2>
-
-    <h3>PyDarshan Summary Reports</h3>
-    <p>
-      Contributed core Python implementation for modular HPC log reporting and figure generation.
+  <section id="work">
+    <h2>Selected Technical Work</h2>
+    <p class="section-intro">
+      Projects are presented as brief technical case studies (Problem → Solution → Impact). Publications and repos are linked within each entry.
     </p>
 
-    <h3>Kinetic Diagram Analysis</h3>
-    <p>
-      Developed a Python package for automated generation of steady-state analysis tools.
-    </p>
+    {% assign projects_sorted = site.projects | sort: "order" %}
+    {% for p in projects_sorted %}
+      <article class="project" id="{{ p.slug | default: p.title | slugify }}">
+        <h3>{{ p.title }}</h3>
 
-    <h3>Lab Workflow Automation</h3>
-    <p>
-      Built automation tools that processed 4,800+ scheduling workflows and saved hundreds of staff hours.
-    </p>
+        {% if p.role %}
+          <p class="meta"><strong>Role / Context:</strong> {{ p.role }}</p>
+        {% endif %}
+
+        {% if p.problem %}
+          <p><strong>Problem:</strong> {{ p.problem }}</p>
+        {% endif %}
+
+        {% if p.solution %}
+          <p><strong>Solution:</strong></p>
+          <ul>
+            {% for item in p.solution %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if p.impact %}
+          <p><strong>Impact:</strong></p>
+          <ul>
+            {% for item in p.impact %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if p.links %}
+          <p class="links"><strong>Links:</strong>
+            {% for link in p.links %}
+              <a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} | {% endunless %}
+            {% endfor %}
+          </p>
+        {% endif %}
+      </article>
+    {% endfor %}
   </section>
 
-  <section>
+  <section id="contact">
     <h2>Contact</h2>
-    <p>Email: ncawtrey@gmail.com</p>
+    <p>Email: <a href="mailto:NikAwtrey@gmail.com">NikAwtrey@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/nawtrey">github.com/nawtrey</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/nawtrey">linkedin.com/in/nawtrey</a></p>
   </section>
+</main>
 
-</body>
-</html>
+<footer>
+  <p>© 2026 Nik Awtrey</p>
+</footer>
