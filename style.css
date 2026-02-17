@@ -1,0 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+header p {
+  color: #555;
+}
